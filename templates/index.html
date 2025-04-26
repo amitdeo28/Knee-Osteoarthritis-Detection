@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knee Osteoarthritis Classification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="file"] {
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background: #218838;
+        }
+        .prediction-result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: white;
+            display: inline-block;
+        }
+        .prediction-result h2 {
+            color: #555;
+        }
+        .description {
+            font-size: 16px;
+            color: #333;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #eef;
+            border-radius: 5px;
+        }
+        img {
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Upload Knee X-Ray Image</h1>
+    
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".png, .jpg, .jpeg">
+        <input type="submit" value="Upload">
+    </form>
+
+    {% if prediction %}
+        <div class="prediction-result">
+            <h2>Prediction: {{ prediction }}</h2>
+            
+            <div class="description">
+                {% if prediction == "No Osteoarthritis" %}
+                    <p><strong>Healthy Knee Image:</strong> No signs of osteoarthritis detected.</p>
+                {% elif prediction == "Moderate Osteoarthritis" %}
+                    <p><strong>Doubtful joint narrowing with possible osteophytic lipping:</strong> Definite presence of osteophytes and possible joint space narrowing.</p>
+                {% elif prediction == "Severe Osteoarthritis" %}
+                    <p><strong>Multiple osteophytes, definite joint space narrowing, with mild sclerosis:</strong> Large osteophytes, significant joint narrowing, and severe sclerosis.</p>
+                {% endif %}
+            </div>
+
+            <img src="{{ image_url }}" alt="Uploaded Image">
+        </div>
+    {% endif %}
+</body>
+</html>
