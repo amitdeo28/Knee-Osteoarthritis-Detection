@@ -11,7 +11,7 @@ Relabeling is based on the original dataset grades (0–4), which are merged int
 
 ## 📁 Dataset Structure
 
-Please download the dataset from this link: [\[Link\](https://www.kaggle.com/datasets/tommyngx/kneeoa)]
+Please download the dataset from this link: [/(https://www.kaggle.com/datasets/tommyngx/kneeoa)]
 
 Make sure your dataset is organized like this:
 
